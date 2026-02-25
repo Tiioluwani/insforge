@@ -30,7 +30,7 @@ export async function subscribeToAnalytics(callbacks: RealtimeCallbacks): Promis
 
   // Connection lifecycle
   rt.on('connect', () => callbacks.onStatusChange('connected'));
-  rt.on('connect_error', () => callbacks.onStatusChange('error'));
+  rt.on('connect_error', () => callbacks.onStatusChange('polling'));
   rt.on('disconnect', () => callbacks.onStatusChange('disconnected'));
 
   // Domain events (SocketMessage wraps the payload in `payload` field)

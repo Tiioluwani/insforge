@@ -73,4 +73,4 @@ export interface RealtimeEventPayload {
 
 // ─── UI state ─────────────────────────────────────────────────────────────────
 
-export type ConnectionStatus = 'disconnected' | 'connecting' | 'connected' | 'error';
+export type ConnectionStatus = 'disconnected' | 'connecting' | 'connected' | 'polling' | 'error';

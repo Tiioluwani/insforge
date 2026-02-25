@@ -8,6 +8,7 @@ from __future__ import annotations
 import asyncio
 import logging
 from collections import Counter
+from datetime import datetime, timedelta, timezone
 from typing import Annotated, Literal
 
 from fastapi import APIRouter, Query
@@ -24,10 +25,10 @@ from lib.types import (
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/metrics", tags=["metrics"])
 
-_INTERVAL_MAP: dict[str, str] = {
-    "1h": "1 hour",
-    "24h": "24 hours",
-    "7d": "7 days",
+_TIMEDELTA_MAP: dict[str, timedelta] = {
+    "1h": timedelta(hours=1),
+    "24h": timedelta(hours=24),
+    "7d": timedelta(days=7),
 }
 
 
@@ -40,11 +41,11 @@ async def get_metrics(
     All aggregation happens in-process after fetching from InsForge Postgres
     because PostgREST does not expose GROUP BY directly.
     """
-    interval = _INTERVAL_MAP.get(range, "24 hours")
     client = get_client()
     db = client.database
 
-    since_filter = f"NOW() - INTERVAL '{interval}'"
+    delta = _TIMEDELTA_MAP.get(range, timedelta(hours=24))
+    since_filter = (datetime.now(timezone.utc) - delta).isoformat()
 
     # Run all queries concurrently
     (
