@@ -104,7 +104,7 @@ class InsForgeAI:
     async def complete(
         self,
         *,
-        model: str = "openai/gpt-4o-mini",
+        model: str = "anthropic/claude-haiku-4-5-20251001",
         messages: list[dict[str, str]],
         temperature: float = 0.7,
         max_tokens: int | None = None,
@@ -128,7 +128,7 @@ class InsForgeAI:
     async def stream(
         self,
         *,
-        model: str = "openai/gpt-4o-mini",
+        model: str = "anthropic/claude-haiku-4-5-20251001",
         messages: list[dict[str, str]],
         temperature: float = 0.7,
         max_tokens: int | None = None,

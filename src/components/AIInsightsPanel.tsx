@@ -98,7 +98,7 @@ export default function AIInsightsPanel({ initialInsights }: Props) {
         <div className="rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-4">
           <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-indigo-400">
             <Sparkles size={12} />
-            Generating insight via InsForge AI Model Gateway…
+            Analyzing with Claude via InsForge…
           </div>
           <p className="text-sm leading-relaxed text-gray-300 whitespace-pre-wrap">
             {streamBuffer}

@@ -106,7 +106,7 @@ async def _stream_insight(time_range: TimeRange) -> AsyncIterator[str]:
 
         # Stream from InsForge AI Model Gateway
         async for delta in client.ai.stream(
-            model="openai/gpt-4o-mini",
+            model="anthropic/claude-haiku-4-5-20251001",
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_message},
